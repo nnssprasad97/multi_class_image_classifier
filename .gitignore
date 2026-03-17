@@ -1,0 +1,21 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# Data
+data/
+data_raw/
+
+# Model and Results
+# results/ (We keep metrics.json as required, but maybe ignore other artifacts?)
+# model/ (We keep the .pth as required by submission checklist)
+
+# OS
+.DS_Store
+Thumbs.db
