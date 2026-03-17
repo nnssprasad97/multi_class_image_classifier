@@ -51,7 +51,15 @@ This project implements an end-to-end image classification pipeline using transf
 Initially, Caltech-101 was planned. However, due to upstream 404 errors during download, the project was successfully migrated to **CIFAR-10**. This ensures a reliable and repeatable preprocessing stage.
 
 ### Model Selection
-**MobileNetV2** was selected for its efficiency and lightweight nature, making it ideal for containerized deployment while providing robust accuracy through transfer learning from ImageNet.
+**MobileNetV2** was selected for its efficiency and lightweight nature. It is particularly well-suited for containerized deployment with limited CPU/Memory resources. By leveraging transfer learning from a model pre-trained on ImageNet, we achieve significantly faster convergence and higher accuracy on the CIFAR-10 dataset than training from scratch.
+
+### Hyperparameters and Training
+- **Base Model**: MobileNetV2 (Pre-trained on ImageNet)
+- **Optimizer**: Adam (Learning Rate: 0.001)
+- **Loss Function**: Cross-Entropy Loss
+- **Batch Size**: 32
+- **Epochs**: 5 (with best-model checkpointing)
+- **Augmentation**: Random Resized Crop (224), Random Horizontal Flip, Random Rotation (15°)
 
 ### Evaluation Summary
-The model achieved an accuracy of **~53%** on the CIFAR-10 validation set after just 2 epochs of fine-tuning, demonstrating effective feature leverage from the pre-trained weights. Full metrics can be found in `results/metrics.json`.
+The project now includes a full validation loop during training, saving the model that achieves the **highest validation accuracy** rather than just the final epoch. The latest metrics in `results/metrics.json` reflect the performance of this optimized model.
