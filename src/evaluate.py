@@ -4,6 +4,8 @@ import torch
 from torchvision import datasets, models, transforms
 from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.config import DATA_DIR, MODEL_PATH, RESULTS_DIR
 
 def evaluate_model():

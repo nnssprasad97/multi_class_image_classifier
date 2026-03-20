@@ -7,6 +7,7 @@ This project implements an end-to-end image classification pipeline using transf
 - `model/`: Saved model artifacts (.pth).
 - `results/`: Evaluation metrics and plots.
 - `src/`: Source code for the pipeline.
+  - `config.py`: Centralized environment configurations.
   - `preprocess.py`: Downloads and splits the CIFAR-10 dataset.
   - `train.py`: Fine-tunes MobileNetV2 with data augmentation.
   - `evaluate.py`: Calculates model performance metrics.

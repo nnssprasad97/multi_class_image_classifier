@@ -5,6 +5,8 @@ import torch.optim as optim
 from torchvision import datasets, models, transforms
 from torchvision.models import MobileNet_V2_Weights
 from torch.utils.data import DataLoader
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.config import DATA_DIR, MODEL_PATH, BATCH_SIZE, EPOCHS
 
 def train_model():

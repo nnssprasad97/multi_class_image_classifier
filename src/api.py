@@ -6,6 +6,8 @@ from fastapi.responses import JSONResponse
 from PIL import Image, UnidentifiedImageError
 from torchvision import models, transforms
 import io
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.config import MODEL_PATH
 
 app = FastAPI(title="Image Classification API")

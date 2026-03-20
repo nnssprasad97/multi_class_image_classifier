@@ -4,6 +4,8 @@ import random
 from torchvision.datasets import CIFAR10
 from PIL import Image
 
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.config import RAW_DATA_DIR, PROCESSED_DATA_DIR, TRAIN_RATIO
 
 def setup_directories():
