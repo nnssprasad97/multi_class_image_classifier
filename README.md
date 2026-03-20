@@ -12,6 +12,7 @@ This project implements an end-to-end image classification pipeline using transf
   - `train.py`: Fine-tunes MobileNetV2 with data augmentation.
   - `evaluate.py`: Calculates model performance metrics.
   - `api.py`: FastAPI server for inference.
+- `app.py`: Gradio web interface for interactive model demonstration.
 - `Dockerfile` & `docker-compose.yml`: Containerization configuration.
 
 ## Setup Instructions
