@@ -26,16 +26,15 @@ transform = transforms.Compose([
 ])
 
 @app.on_event("startup")
-def load_model():
+def load_startup_model():
     global model, class_names
-    model_path = os.getenv('MODEL_PATH', 'model/image_classifier.pth')
     
-    if not os.path.exists(model_path):
-        print(f"Warning: Model not found at {model_path}. Please train the model first.")
+    if not os.path.exists(MODEL_PATH):
+        print(f"Warning: Model not found at {MODEL_PATH}. Please train the model first.")
         return
 
     # Load weights and class maps
-    checkpoint = torch.load(model_path, map_location=device)
+    checkpoint = torch.load(MODEL_PATH, map_location=device)
     class_names = checkpoint['class_names']
     
     # Rebuild model structure
