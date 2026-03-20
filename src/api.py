@@ -26,7 +26,7 @@ transform = transforms.Compose([
 ])
 
 @app.on_event("startup")
-def load_startup_model():
+def load_model():
     global model, class_names
     
     if not os.path.exists(MODEL_PATH):
