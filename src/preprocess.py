@@ -4,10 +4,7 @@ import random
 from torchvision.datasets import CIFAR10
 from PIL import Image
 
-# Configuration
-RAW_DATA_DIR = "./data_raw"
-PROCESSED_DATA_DIR = "./data"
-TRAIN_RATIO = 0.8
+from src.config import RAW_DATA_DIR, PROCESSED_DATA_DIR, TRAIN_RATIO
 
 def setup_directories():
     for split in ['train', 'val']:

@@ -55,11 +55,17 @@ Initially, Caltech-101 was planned. However, due to upstream 404 errors during d
 
 ### Hyperparameters and Training
 - **Base Model**: MobileNetV2 (Pre-trained on ImageNet)
-- **Optimizer**: Adam (Learning Rate: 0.001)
+- **Optimizer**: Adam (Learning Rate: 0.001, 1e-4 for fine-tuning)
 - **Loss Function**: Cross-Entropy Loss
 - **Batch Size**: 32
-- **Epochs**: 5 (with best-model checkpointing)
+- **Epochs**: 10 (with gradual unfreezing and best-model checkpointing)
 - **Augmentation**: Random Resized Crop (224), Random Horizontal Flip, Random Rotation (15°)
+
+### Potential Improvements & Hyperparameter Tuning
+To further improve accuracy, future iterations could explore:
+- **Unfreezing More Layers**: Gradually unfreezing a larger portion of the MobileNetV2 base network.
+- **Extended Training**: Increasing the number of epochs (e.g., 20-30) alongside an adaptive learning rate scheduler (like `CosineAnnealingLR`).
+- **Advanced Augmentation**: Introducing `ColorJitter` or `RandomErasing` to improve model robustness to varied lighting and occlusions.
 
 ### Evaluation Summary
 The project now includes a full validation loop during training, saving the model that achieves the **highest validation accuracy** rather than just the final epoch. The latest metrics in `results/metrics.json` reflect the performance of this optimized model.

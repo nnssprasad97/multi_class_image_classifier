@@ -5,14 +5,7 @@ import torch.optim as optim
 from torchvision import datasets, models, transforms
 from torchvision.models import MobileNet_V2_Weights
 from torch.utils.data import DataLoader
-from dotenv import load_dotenv
-
-load_dotenv()
-
-DATA_DIR = './data'
-MODEL_PATH = os.getenv('MODEL_PATH', 'model/image_classifier.pth')
-BATCH_SIZE = 32
-EPOCHS = 5 # Increased for better accuracy
+from src.config import DATA_DIR, MODEL_PATH, BATCH_SIZE, EPOCHS
 
 def train_model():
     # 1. Data Augmentation and Loading
@@ -62,6 +55,17 @@ def train_model():
     best_acc = 0.0
     
     for epoch in range(EPOCHS):
+        # Gradual unfreezing halfway through
+        if epoch == EPOCHS // 2:
+            print("Unfreezing the last few feature layers of MobileNetV2...")
+            for param in model.features[-2:].parameters():
+                param.requires_grad = True
+            # Update optimizer with a lower learning rate for fine-tuning
+            optimizer = optim.Adam([
+                {'params': model.features[-2:].parameters(), 'lr': 1e-4},
+                {'params': model.classifier.parameters(), 'lr': 1e-4}
+            ])
+
         # Training Phase
         model.train()
         running_loss = 0.0

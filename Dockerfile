@@ -18,8 +18,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 8000
+# Expose the port the app runs on dynamically
+ARG API_PORT=8000
+EXPOSE ${API_PORT}
 
 # Command to run the API using Uvicorn with dynamic port
 CMD ["sh", "-c", "uvicorn src.api:app --host 0.0.0.0 --port ${API_PORT:-8000}"]

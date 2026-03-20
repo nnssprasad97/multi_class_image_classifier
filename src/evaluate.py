@@ -4,13 +4,7 @@ import torch
 from torchvision import datasets, models, transforms
 from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
-from dotenv import load_dotenv
-
-load_dotenv()
-
-DATA_DIR = './data/val'
-MODEL_PATH = os.getenv('MODEL_PATH', 'model/image_classifier.pth')
-RESULTS_DIR = './results'
+from src.config import DATA_DIR, MODEL_PATH, RESULTS_DIR
 
 def evaluate_model():
     print("Loading validation data and model...")
@@ -22,7 +16,7 @@ def evaluate_model():
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])
 
-    val_dataset = datasets.ImageFolder(DATA_DIR, val_transforms)
+    val_dataset = datasets.ImageFolder(os.path.join(DATA_DIR, 'val'), val_transforms)
     val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
     
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
